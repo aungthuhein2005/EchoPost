@@ -10,7 +10,6 @@ class PostSeeder extends Seeder
     public function run()
     {
         Post::factory(50)->create()->each(function ($post) {
-            // Attach random categories to each post
             $categories = Category::inRandomOrder()->limit(rand(1, 3))->get();
             $post->categories()->attach($categories);
         });
