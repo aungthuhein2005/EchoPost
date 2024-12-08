@@ -43,12 +43,12 @@ export default function BlogPost({ post }) {
                     </p> */}
 
                     <div class="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                        <img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" 
-                             alt="Author" 
+                        <img src={post.author.avatar_url || `https://via.placeholder.com/150/000000/FFFFFF/?text=${post.author.full_name.charAt(0)}`} 
+                             alt={post.author.username} 
                              class="w-10 h-10 rounded-full"/>
                         <div>
-                            <h4 class="font-medium text-gray-900 dark:text-white">John Doe</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Technical Writer</p>
+                            <h4 class="font-medium text-gray-900 dark:text-white">{post.author.username}</h4>
+                            {/* <p class="text-sm text-gray-500 dark:text-gray-400">Technical Writer</p> */}
                         </div>
                     </div>
             </div>

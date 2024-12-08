@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Types\Model\Article;
 
 Route::get('/', function () {
-    $posts = (new Post)->latestPosts();
+    $posts = Post::latest()->with(['categories','author'])->limit(6)->get();
     return Inertia::render('Home',['posts'=>$posts]);
 });
 
 Route::get('/articles', function () {
-    $posts = Post::published()->with('categories')->get();
+    $posts = Post::published()->latest()->with(['categories', 'author'])->get();
     $categories = Category::get();
     return Inertia::render('Articles',['posts'=>$posts,'categories'=>$categories]);
 });
@@ -57,7 +57,7 @@ Route::get('/about', function () {
 
 Route::get('/profile/{userId}', function ($userId) {
     $post = new Post();
-    $articles = $post->postByAuthor($userId)->with('categories')->get();
+    $articles = $post->postByAuthor($userId)->with(['author','categories'])->get();
     $saved = (new PostReaction())->findSavedPostsByUserId($userId);
     $commentCount = (new Comment())->getCommentCount($userId);
     return Inertia::render('UserProfile',[
@@ -71,12 +71,6 @@ Route::get('/profile/{userId}/edit', function ($userId) {
     $user = User::findOrFail($userId); // Assuming you have a User model
     return Inertia::render('EditProfile', ['user' => $user]);
 })->middleware('auth')->name('profile.edit');
-
-// Route::get('/articles/{userId}', function ($userId) {
-//     $post = new Post();
-//     $articles = $post->postByAuthor($userId)->with('categories')->get();
-//    return response()->json($articles);
-// });
 
 Route::post('/articles', function () {
     $validated = Request::validate([

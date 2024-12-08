@@ -5,7 +5,7 @@ import Pagination from '@/Components/Pagination';
 import MainLayout from '@/Layouts/MainLayout';
 import { formatDate } from '@/utils/dateFormatter';
 
-export default function Articles({posts,categories}) {
+export default function Articles({posts,categories}) {  
     
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
@@ -89,11 +89,7 @@ export default function Articles({posts,categories}) {
                             readTime="5 min read"
                             title={post.title}
                             excerpt={post.excerpt}
-                            author={{
-                                name: "John Doe",
-                                role: "Technical Writer",
-                                avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
-                            }}
+                            author={post.author}
                             href={`/articles/${post.slug}`}
                         />
                     ))}

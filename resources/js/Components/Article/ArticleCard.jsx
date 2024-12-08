@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 
 export default function ArticleCard({ image, category, date, readTime, title, excerpt, author, href }) {
+
     return (
         <article className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
             <div className="relative">
@@ -29,10 +30,10 @@ export default function ArticleCard({ image, category, date, readTime, title, ex
                 
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <img src={author.avatar} alt={author.name} className="w-10 h-10 rounded-full" />
+                        <img src={author.avatar_url || `https://via.placeholder.com/150/000000/FFFFFF/?text=${author.full_name.charAt(0)}`} alt={author.username} className="w-10 h-10 rounded-full" />
                         <div>
-                            <h4 className="font-medium text-gray-900 dark:text-white">{author.name}</h4>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">{author.role}</p>
+                            <h4 className="font-medium text-gray-900 dark:text-white">{author.username}</h4>
+                            {/* <p className="text-sm text-gray-500 dark:text-gray-400">{author.role}</p> */}
                         </div>
                     </div>
                     

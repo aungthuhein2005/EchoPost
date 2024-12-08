@@ -155,11 +155,7 @@ const UserProfile = ({ posts, saved, commentCount }) => {
                             readTime="5 min read"
                             title={post.title}
                             excerpt={post.excerpt}
-                            author={{
-                                name: "John Doe",
-                                role: "Technical Writer",
-                                avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
-                            }}
+                            author={post.author}
                             href={`/articles/${post.slug}`}
                         />
                     ))}

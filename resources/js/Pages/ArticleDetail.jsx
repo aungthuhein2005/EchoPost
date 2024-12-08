@@ -17,7 +17,7 @@ export default function ArticleDetail({article}) {
                 <ArticleContent content={article.content} />
                 <div className="mt-4 flex items-center">
                     <img 
-                        src={article.author.avatar_url} // Assuming the avatar URL is available in the author object
+                       src={article.author.avatar_url || `https://via.placeholder.com/150/000000/FFFFFF/?text=${article.author.full_name.charAt(0)}`} // Assuming the avatar URL is available in the author object
                         alt={`${article.author.full_name}'s profile`}
                         className="w-10 h-10 rounded-full mr-3" // Adjust size and margin as needed
                     />

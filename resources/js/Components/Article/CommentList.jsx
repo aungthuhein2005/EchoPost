@@ -6,7 +6,7 @@ export default function CommentList({ comments }) {
             {comments.map((comment) => (
                 <div key={comment.id} className="flex gap-4">
                     <img 
-                        // src={comment.author.avatar}
+                        src={comment.user.avatar_url || `https://via.placeholder.com/150/000000/FFFFFF/?text=${comment.user.full_name.charAt(0)}`}
                         alt={comment.user == null ? "unknown" : comment.user.full_name} 
                         className="w-10 h-10 rounded-full"
                     />
