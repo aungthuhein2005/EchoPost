@@ -19,7 +19,7 @@ Ensure the following tools are installed on your system:
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/aungthuhein2005/EchoPost.git
    cd EchoPost
    ```
 
