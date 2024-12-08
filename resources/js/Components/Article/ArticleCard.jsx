@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 
 export default function ArticleCard({ image, category, date, readTime, title, excerpt, author, href }) {
+console.log(author);
 
     return (
         <article className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">

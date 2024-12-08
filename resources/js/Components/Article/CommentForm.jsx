@@ -22,7 +22,7 @@ export default function CommentForm({ postSlug }) {
         <form className="mb-8" onSubmit={handleSubmit}>
             <div className="flex gap-4">
                 <img 
-                    src={auth.user.avatar_url || `https://via.placeholder.com/150/000000/FFFFFF/?text=${auth.user.full_name.charAt(0)}`}
+                    src={auth.user ? auth.user.avatar_url : `https://via.placeholder.com/150/000000/FFFFFF/?text=U`}
                     alt="Your profile" 
                     className="w-10 h-10 rounded-full" 
                 />

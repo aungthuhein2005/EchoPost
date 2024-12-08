@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Types\Model\Article;
 
 Route::get('/', function () {
-    $posts = Post::latest()->with(['categories','author'])->limit(6)->get();
+    $posts = Post::published()->latest()->with(['categories','author'])->limit(6)->get();
     return Inertia::render('Home',['posts'=>$posts]);
 });
 
@@ -43,7 +43,7 @@ Route::post('/articles/{post:slug}/comments', function(Request $request, Post $p
         'content' => $validated['content'],
     ]);
     return redirect()->route('articles.show', $post->slug);
-});
+})->middleware('auth');
 
 Route::get('/articles/{post:slug}', function (Post $post) {
     return Inertia::render('ArticleDetail', [
@@ -59,6 +59,9 @@ Route::get('/profile/{userId}', function ($userId) {
     $post = new Post();
     $articles = $post->postByAuthor($userId)->with(['author','categories'])->get();
     $saved = (new PostReaction())->findSavedPostsByUserId($userId);
+    foreach ($saved as $post) {
+        $post->load('author');
+    }
     $commentCount = (new Comment())->getCommentCount($userId);
     return Inertia::render('UserProfile',[
         "posts" => $articles,

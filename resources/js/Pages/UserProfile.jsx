@@ -9,6 +9,8 @@ const UserProfile = ({ posts, saved, commentCount }) => {
     const { auth } = usePage().props;
     const [status, setStatus] = useState("all");
     
+    console.log(saved);
+    
 
     const filteredArticles = useMemo(() => {
         if (status === "saved") return saved;

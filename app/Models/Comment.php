@@ -48,9 +48,8 @@ class Comment extends Model
     {
         $userPosts = Post::where('author_id', $userId)->pluck('id');
     
-        // Count comments made by users other than the $userId
-        $commentCount = Comment::whereIn('post_id', $userPosts)  // Get comments on the user's posts
-                               ->where('user_id', '!=', $userId)  // Exclude comments by the user themselves
+        $commentCount = Comment::whereIn('post_id', $userPosts)  
+                               ->where('user_id', '!=', $userId)  
                                ->count();
         
         return $commentCount;
